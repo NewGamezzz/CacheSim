@@ -12,13 +12,13 @@
 #define CACHESIM_H_INCLUDED
 
 /* Please adjust parameters here */
-#define CACHE_SIZE 262144
-#define INDEX_SIZE 8192
+#define CACHE_SIZE 2048
+#define INDEX_SIZE 64
 #define BLOCK_SIZE 32
-#define TAGLEN 14
-#define INDEXLEN 13
+#define TAGLEN 21
+#define INDEXLEN 6
 #define OFFSETLEN 5
-#define SET 4
+#define SET 2
 typedef unsigned char Byte;
 typedef unsigned char bool;
 typedef struct Cache{

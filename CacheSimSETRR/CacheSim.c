@@ -28,7 +28,7 @@ int init() {
 	        cache[i][j].valid=0;
 	        cache[i][j].tag=0;
 	        cache[i][j].dirty=0;
-	        cache[i][j].time=i;
+	        cache[i][j].time=0;
 	    }
 	}
 }
@@ -60,7 +60,7 @@ int access(unsigned long addr){
     unsigned long min_time;
 	int valid=0;
 	calAddr(addr,&tag,&idx,&offset);
-	min_time = cache[0][idx].time;
+	s = cache[0][idx].time;
 
 	for(int i=0; i<SET; i++){
 		if(cache[i][idx].tag==tag && cache[i][idx].valid){
@@ -73,15 +73,7 @@ int access(unsigned long addr){
 	}
 	else{
         MISS++;
-		for(int i=0; i<SET; i++){
-	        if(cache[i][idx].time==0){
-	        	s = i;
-	        	cache[i][idx].time = SET-1;
-	        }
-	        else{
-	        	cache[i][idx].time -= 1;
-	        }
-		}
+		cache[0][idx].time = (cache[0][idx].time + 1) % SET;
         cache[s][idx].valid=1;
         cache[s][idx].tag = tag;
 	}
